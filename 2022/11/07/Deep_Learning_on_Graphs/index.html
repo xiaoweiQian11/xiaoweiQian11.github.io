@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Notes for 'Deep Learning on Graphs' | XiaoweiQ's Blog</title><meta name="author" content="Xiaowei"><meta name="copyright" content="Xiaowei"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="根据《Deep Learning on Graphs》做一些学习笔记，顺便练习英文表达。"><link rel="shortcut icon" href="https://s2.loli.net/2022/09/02/weMdx14AFbzgyPJ.jpg"><link rel="canonical" href="http://xiaoweiqian11.github.io/2022/11/07/Deep_Learning_on_Graphs/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Xiaowei","link":"链接: ","source":"来源: XiaoweiQ's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Notes for \'Deep Learning on Graphs\'',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-08 22:27:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2022/09/02/weMdx14AFbzgyPJ.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-hourglass-half"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tag"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://github.com/xiaoweiQian11/img/blob/main/cover/deep_learning_on_graphs.png?raw=true')"><nav id="nav"><span id="blog-info"><a href="/" title="XiaoweiQ's Blog"><span class="site-name">XiaoweiQ's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-hourglass-half"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tag"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Notes for 'Deep Learning on Graphs'</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-06T17:08:40.000Z" title="发表于 2022-11-07 01:08:40">2022-11-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-08T14:27:11.049Z" title="更新于 2023-04-08 22:27:11">2023-04-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Notes for 'Deep Learning on Graphs'"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="https://github.com/xiaoweiQian11/img/blob/main/screenshot/2023-04-08%20213230.png?raw=true" /></p>
+<h1 id="introduction">Introduction</h1>
+<h2 id="feature-learning-on-graphs-a-brief-history">1.5 Feature Learning on Graphs: A Brief History</h2>
+<h3 id="feature-selection-on-graphs">Feature Selection on Graphs</h3>
+<p>Traditional feature selection assumes that data instances are independence and identically distributed.</p>
+<p>However, data samples in many applications are embedded in graphs that are inherently not i.i.d.</p>
+<h3 id="representation-learning-on-graphs">Representation Learning on Graphs</h3>
+<ul>
+<li><strong>Spatial approaches</strong> explicitly leverage the graph structure, such as spatially close neighbors.</li>
+<li><strong>Spectral approaches</strong> utilize the spectral view of graphs by taking advantage of graph Fourier transform and the inverse graph Fourier transform.</li>
+</ul>
+<p>In the era of DL, GNNs have been rapidly developed in the following aspects:</p>
+<p>(Write a separate blog based this paragraph)</p>
+<h1 id="foundations-of-graphs">Foundations of Graphs</h1>
+<h2 id="graph-representaion">2.2 Graph Representaion</h2>
+<p>Graph</p>
+<p>Adjacent Matrix</p>
+<h2 id="properties-and-measures">2.3 Properties and Measures</h2>
+<h3 id="degree">Degree</h3>
+<p>Neighbors</p>
+<h3 id="connectivity">Connectivity</h3>
+<h3 id="centrality">Centrality</h3>
+<h4 id="degree-centrality">Degree Centrality</h4>
+<p>​ <span class="math inline">\(c_d(v_i)=d(v_i)\)</span></p>
+<h4 id="eigenvector-centrality">Eigenvector Centrality</h4>
+<p><span class="math display">\[
+\begin{align}
+&amp; c_e(v_i)=\frac{1}{\lambda}\sum^{N}_{j=1}A_{i,j}\cdot c_{e}(v_j)  \\
+&amp; c_e = \frac{1}{\lambda}A \cdot {c_e}
+\end{align}
+\]</span></p>
+<p><em>where <span class="math inline">\(c_e \in \mathbb{R}^{N}\)</span> is a vector containing the centrality scores of all nodes in the graph.</em></p>
+<blockquote>
+<p><strong>Citation</strong>: A real squared matrix with positive elements has a unique largest eigenvalue and its corresponding eigenvector has all positive elements.</p>
+</blockquote>
+<p>​ We choose <span class="math inline">\(\lambda\)</span> as the largest eigenvalue and its corresponding eigenvector as the centrality score vector.</p>
+<h4 id="katz-centrality">Katz Centrality</h4>
+<h4 id="between-centrality">Between Centrality</h4>
+<h2 id="spectral-gprah-theory">2.4 Spectral Gprah Theory</h2>
+<h3 id="laplacian-matrix">Laplacian Matrix</h3>
+<p><span class="math display">\[
+\begin{align}
+&amp;(Laplacian \space Matrix) \\
+&amp;L=D-A \\
+&amp;(Normalized \space Laplacian \space Matrix)\\
+&amp;L=D^{-1/2}(D-A)D^{-1/2}=I-D^{-1/2}AD^{-1/2}
+\end{align}
+\]</span></p>
+<p><em>where D is a diagonal degree matrix <span class="math inline">\(D=diag(d(v_i),...,d(v_{|\mathcal{V}|}))\)</span></em></p>
+<p>​ Laplacian Matrix is a positive semi-definite.</p>
+<h3 id="the-eigenvalues-and-eigenvectors-of-the-laplacian-matrix">The Eigenvalues and Eigenvectors of the Laplacian Matrix</h3>
+<p><strong>Theorem</strong>: The eigenvalues of graph's Laplacian matrix L are nonnegtive.</p>
+<p><strong>Theorem</strong>: Given a graph <span class="math inline">\(\mathcal{G}\)</span>, the number of 0 eigenvalues of its Laplacian Matrix L equals the number of connected component in the graph.</p>
+<p>​ For a graph with N nodes, there are N eigenvalues.</p>
+<blockquote>
+<p><strong>Citation</strong>: 一个n阶矩阵一定有n个特征值（包括重根，也可能是复根）一个n阶实对称矩阵一定有n个实特征值（包括重根）每个特征值至少有一个特诊向量，不同特征值对应的特征向量线性无关。</p>
+</blockquote>
+<h2 id="graph-signal-processing">2.5 Graph Signal Processing</h2>
+<p>​ A graph signal consists of a graph and a mapping function <span class="math inline">\(f\)</span> defined on node domain, which maps the nodes to real values: <span class="math display">\[
+f: \mathcal V \rightarrow \mathbb R^d,
+\]</span> where d is the dimension of the vector associated with each node. <strong>Denote mapped values for all nodes as f with f[i] corresponding to node <span class="math inline">\(v_i\)</span>.</strong></p>
+<p>​ A graph is smooth if the values in connected nodes are similar. A smooth graph signal is low frequency, because the values change slowly across the graph via the edges.</p>
+<p>​ The value <span class="math inline">\(\mathbf{f^{T}Lf}\)</span> is called the smoothness(or frequency) of the signal <strong>f</strong>. <span class="math display">\[
+\mathbf{f^{T}Lf}=\frac{1}{2}\sum_{v_i\in\mathcal{V}}\sum_{v_j\in\mathcal{N}(v_i)}(\mathbf f[i]-\mathbf f[j])^2
+\]</span> ​ The Laplacian quadratic form can measure the smoothness(or the frequency) of a graph signal because it's the summation of the square of the difference between all pairs of connected nodes. When the signal is smooth, the smoothness is small.</p>
+<p>​ Similar to classical signal can be denoted in time domain and frequency domain, graph signal can also be representation in spatial domain, and spectral domain(or frequency domain).</p>
+<h3 id="graph-fourier-transform">Graph Fourier Transform</h3>
+<h1 id="graph-neural-network">Graph Neural Network</h1>
+<h2 id="introduction-1">5.1 Introduction</h2>
+<h2 id="the-graph-gnn-framework">5.2 The Graph GNN Framework</h2>
+<h2 id="graph-filters">5.3 Graph Filters</h2>
+<h3 id="spectral-based-graph-filters">5.3.1 Spectral-Based Graph Filters</h3>
+<h4 id="graph-spectral-filter">Graph Spectral Filter</h4>
+<p><img src="https://github.com/xiaoweiQian11/img/blob/main/screenshot/image-20221107223415039.png?raw=true" /></p>
+<h4 id="spectral-based-graph-filter">Spectral-Based Graph Filter</h4>
+<p>Highlights of Poly-Filter:</p>
+<ol type="1">
+<li>The Poly-Filter is spatially localized. Because it only involves K-hops when calculating output for a specific node;</li>
+<li>Eigendecomposition isn't needed;</li>
+</ol>
+<p>Disadvantage of Poly-Filter:</p>
+<ol type="1">
+<li><p>The bias of the polymial (i.e., 1, x, x^2, ...) is not an orthogonal bias. Hence the coeffient of the biases are dependent on each other. An update in one coeffient may lead to changes in other coeffients.</p>
+<blockquote>
+<p>正交多项式，指一族多项式中任意两个多项式在某个区间内内积积分为0；</p>
+</blockquote></li>
+</ol>
+<h4 id="chebyshev-polynomial-and-cheby-filter">Chebyshev Polynomial and Cheby-Filter</h4>
+<p>为了解决基底正交的问题，引入正交多项式中的切比雪夫多项式（同样是正交多项式的还有勒让德多项式）</p>
+<p><img src="https://github.com/xiaoweiQian11/img/blob/main/screenshot/image-20221109215753360.png?raw=true"  /></p>
+<h4 id="gcn-filter-simplified-cheby-filter-involving-1-hop-neighbors">GCN-Filter: Simplified Cheby-Filter Involving 1-Hop Neighbors</h4>
+<h4 id="graph-filter-for-multichannel-graph-signal">Graph Filter for Multichannel Graph Signal</h4>
+<h3 id="spatial-based-graph-filters">5.3.2 Spatial-Based Graph Filters</h3>
+<h4 id="graphsage-filter">GraphSAGE Filter</h4>
+<h4 id="gat-filter">GAT-Filter</h4>
+<h4 id="ec-filter">EC-Filter</h4>
+<h4 id="ggnn-filter">GGNN-Filter</h4>
+<h4 id="mo-filter">Mo-Filter</h4>
+<h4 id="mpnn-a-general-framework-for-spatial-based-graph-filters">MPNN: A General Framework for Spatial-Based Graph Filters</h4>
+<h2 id="graph-pooling">5.4 Graph Pooling</h2>
+<h2 id="parameter-learning-for-graph-neural-network">5.5 Parameter Learning for Graph Neural Network</h2>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/GNN/">GNN</a></div><div class="post_share"><div class="social-share" data-image="https://github.com/xiaoweiQian11/img/blob/main/cover/deep_learning_on_graphs.png?raw=true" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/09/02/Operating_Systems_Review_Notes/" title="Operating Systems Review Notes"><img class="cover" src="/my_img/default_bg.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Operating Systems Review Notes</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2022/09/02/weMdx14AFbzgyPJ.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Xiaowei</div><div class="author-info__description">Learning & Life & Loving</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaoweiQian11"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xiaoweiQian11" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3175595221@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="mqqwpa://im/chat?chat_type=wpa&amp;uin=3175595221&amp;version=1&amp;src_type=web&amp;web_src=oicqzone.com" target="_blank" title="移动端QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="tencent://message/?uin=3175595221&amp;Site=&amp;Menu=yes" target="_blank" title="PC端QQ"><i class="fas fa-desktop"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><p>目前已知BUG及待优化功能：<br/> 1. 'busuanzi'插件error导致经常出现访客数和总访问量错误<br/> 2. About界面尚未编写，目前是404<br/> 3. 搜索和留言功能尚未开启<br/> 4. 文章字数记录和阅读时间估计待添加</p></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#feature-learning-on-graphs-a-brief-history"><span class="toc-number">1.1.</span> <span class="toc-text">1.5 Feature Learning on Graphs: A Brief History</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#feature-selection-on-graphs"><span class="toc-number">1.1.1.</span> <span class="toc-text">Feature Selection on Graphs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#representation-learning-on-graphs"><span class="toc-number">1.1.2.</span> <span class="toc-text">Representation Learning on Graphs</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#foundations-of-graphs"><span class="toc-number">2.</span> <span class="toc-text">Foundations of Graphs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#graph-representaion"><span class="toc-number">2.1.</span> <span class="toc-text">2.2 Graph Representaion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#properties-and-measures"><span class="toc-number">2.2.</span> <span class="toc-text">2.3 Properties and Measures</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#degree"><span class="toc-number">2.2.1.</span> <span class="toc-text">Degree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#connectivity"><span class="toc-number">2.2.2.</span> <span class="toc-text">Connectivity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#centrality"><span class="toc-number">2.2.3.</span> <span class="toc-text">Centrality</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#degree-centrality"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">Degree Centrality</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#eigenvector-centrality"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">Eigenvector Centrality</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#katz-centrality"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">Katz Centrality</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#between-centrality"><span class="toc-number">2.2.3.4.</span> <span class="toc-text">Between Centrality</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spectral-gprah-theory"><span class="toc-number">2.3.</span> <span class="toc-text">2.4 Spectral Gprah Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#laplacian-matrix"><span class="toc-number">2.3.1.</span> <span class="toc-text">Laplacian Matrix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#the-eigenvalues-and-eigenvectors-of-the-laplacian-matrix"><span class="toc-number">2.3.2.</span> <span class="toc-text">The Eigenvalues and Eigenvectors of the Laplacian Matrix</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#graph-signal-processing"><span class="toc-number">2.4.</span> <span class="toc-text">2.5 Graph Signal Processing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#graph-fourier-transform"><span class="toc-number">2.4.1.</span> <span class="toc-text">Graph Fourier Transform</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#graph-neural-network"><span class="toc-number">3.</span> <span class="toc-text">Graph Neural Network</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction-1"><span class="toc-number">3.1.</span> <span class="toc-text">5.1 Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#the-graph-gnn-framework"><span class="toc-number">3.2.</span> <span class="toc-text">5.2 The Graph GNN Framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#graph-filters"><span class="toc-number">3.3.</span> <span class="toc-text">5.3 Graph Filters</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#spectral-based-graph-filters"><span class="toc-number">3.3.1.</span> <span class="toc-text">5.3.1 Spectral-Based Graph Filters</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#graph-spectral-filter"><span class="toc-number">3.3.1.1.</span> <span class="toc-text">Graph Spectral Filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spectral-based-graph-filter"><span class="toc-number">3.3.1.2.</span> <span class="toc-text">Spectral-Based Graph Filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chebyshev-polynomial-and-cheby-filter"><span class="toc-number">3.3.1.3.</span> <span class="toc-text">Chebyshev Polynomial and Cheby-Filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gcn-filter-simplified-cheby-filter-involving-1-hop-neighbors"><span class="toc-number">3.3.1.4.</span> <span class="toc-text">GCN-Filter: Simplified Cheby-Filter Involving 1-Hop Neighbors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#graph-filter-for-multichannel-graph-signal"><span class="toc-number">3.3.1.5.</span> <span class="toc-text">Graph Filter for Multichannel Graph Signal</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spatial-based-graph-filters"><span class="toc-number">3.3.2.</span> <span class="toc-text">5.3.2 Spatial-Based Graph Filters</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#graphsage-filter"><span class="toc-number">3.3.2.1.</span> <span class="toc-text">GraphSAGE Filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gat-filter"><span class="toc-number">3.3.2.2.</span> <span class="toc-text">GAT-Filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ec-filter"><span class="toc-number">3.3.2.3.</span> <span class="toc-text">EC-Filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ggnn-filter"><span class="toc-number">3.3.2.4.</span> <span class="toc-text">GGNN-Filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mo-filter"><span class="toc-number">3.3.2.5.</span> <span class="toc-text">Mo-Filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mpnn-a-general-framework-for-spatial-based-graph-filters"><span class="toc-number">3.3.2.6.</span> <span class="toc-text">MPNN: A General Framework for Spatial-Based Graph Filters</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#graph-pooling"><span class="toc-number">3.4.</span> <span class="toc-text">5.4 Graph Pooling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#parameter-learning-for-graph-neural-network"><span class="toc-number">3.5.</span> <span class="toc-text">5.5 Parameter Learning for Graph Neural Network</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/11/07/Deep_Learning_on_Graphs/" title="Notes for 'Deep Learning on Graphs'"><img src="https://github.com/xiaoweiQian11/img/blob/main/cover/deep_learning_on_graphs.png?raw=true" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Notes for 'Deep Learning on Graphs'"/></a><div class="content"><a class="title" href="/2022/11/07/Deep_Learning_on_Graphs/" title="Notes for 'Deep Learning on Graphs'">Notes for 'Deep Learning on Graphs'</a><time datetime="2022-11-06T17:08:40.000Z" title="发表于 2022-11-07 01:08:40">2022-11-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/02/Operating_Systems_Review_Notes/" title="Operating Systems Review Notes"><img src="/my_img/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Operating Systems Review Notes"/></a><div class="content"><a class="title" href="/2022/09/02/Operating_Systems_Review_Notes/" title="Operating Systems Review Notes">Operating Systems Review Notes</a><time datetime="2022-09-01T17:08:40.000Z" title="发表于 2022-09-02 01:08:40">2022-09-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Xiaowei</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://butterfly.js.org/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script src=" https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
