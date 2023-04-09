@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>平凡的世界——现实主义中的理想赞歌</title>
+      <link href="/2023/03/27/%E5%B9%B3%E5%87%A1%E7%9A%84%E4%B8%96%E7%95%8C/"/>
+      <url>/2023/03/27/%E5%B9%B3%E5%87%A1%E7%9A%84%E4%B8%96%E7%95%8C/</url>
+      
+        <content type="html"><![CDATA[<h1 id="关系图">关系图</h1><p>由于担心像百年孤独一样乱成麻花，边看边记了两笔</p><p><img src="https://s2.loli.net/2023/04/09/8CDZRIKTNfLqHgb.png" /></p><h1 id="概要">概要</h1><blockquote><p>同样是看的时候随手记的</p></blockquote><h2 id="第一部">第一部</h2><ul><li>王满银劳教；少安与润叶</li><li>打顾养民；少安被批、相亲</li><li>初识田晓霞；干旱、偷水</li><li>抄诗，救侯玉英；革委会路线矛盾 (周总理逝世）</li><li>金波参军；少安结婚</li><li>毛主席逝世，四人帮被捕、文革结束</li><li>润叶结婚；少安与秀英矛盾</li><li>少平毕业回村教书；润叶与向前不和</li><li>拦截哭咽河、搬迁金家</li><li>金家捉奸斗殴；秀英生子</li></ul><h2 id="第二部">第二部</h2><ul><li>乔伯年上任省委、田福军赴任专员</li><li>政治风气大变、包产到户推行</li><li>少安砖厂起步、少平外出务工</li><li>少安秀莲分家 、少平黄原落户</li><li>少平与晓霞、金波与郝红梅感情线</li><li>向前车祸截肢、田润叶回归婚姻</li></ul><h2 id="第三部">第三部</h2><ul><li>少平前往煤炭厂、金波接手邮政司机；晓霞省报记者、兰香北方工大天体物理，金秀省医学院</li><li>少平晓霞再会面，王世才意外去世</li><li>少安砖厂扩建不善终倒闭</li><li>润生与红梅、金强与孙卫红感情线</li><li>杜丽丽出轨、黄原赴京“讨饭”</li><li>南部大洪水田晓霞救人溺亡；少平悲痛欲绝独自赴两年之约</li><li>少安砖厂回归正轨、少平矿难毁容</li><li>少安做善事建学校 、秀莲操劳多年患肺癌</li><li>少平回到煤矿走向未知的明天</li></ul><h1 id="随笔">随笔</h1><p>​ 给人的第一感觉像是一面镜子</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 小说 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Notes for &#39;Deep Learning on Graphs&#39;</title>
+      <link href="/2022/11/07/Deep_Learning_on_Graphs/"/>
+      <url>/2022/11/07/Deep_Learning_on_Graphs/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://s2.loli.net/2023/04/09/hIB6cQbd7jyLDRA.png" /></p><h1 id="introduction">Introduction</h1><h2 id="feature-learning-on-graphs-a-brief-history">1.5 Feature Learning on Graphs: A Brief History</h2><h3 id="feature-selection-on-graphs">Feature Selection on Graphs</h3><p>Traditional feature selection assumes that data instances are independence and identically distributed.</p><p>However, data samples in many applications are embedded in graphs that are inherently not i.i.d.</p><h3 id="representation-learning-on-graphs">Representation Learning on Graphs</h3><ul><li><strong>Spatial approaches</strong> explicitly leverage the graph structure, such as spatially close neighbors.</li><li><strong>Spectral approaches</strong> utilize the spectral view of graphs by taking advantage of graph Fourier transform and the inverse graph Fourier transform.</li></ul><p>In the era of DL, GNNs have been rapidly developed in the following aspects:</p><p>(Write a separate blog based this paragraph)</p><h1 id="foundations-of-graphs">Foundations of Graphs</h1><h2 id="graph-representaion">2.2 Graph Representaion</h2><p>Graph</p><p>Adjacent Matrix</p><h2 id="properties-and-measures">2.3 Properties and Measures</h2><h3 id="degree">Degree</h3><p>Neighbors</p><h3 id="connectivity">Connectivity</h3><h3 id="centrality">Centrality</h3><h4 id="degree-centrality">Degree Centrality</h4><p>​ <span class="math inline">\(c_d(v_i)=d(v_i)\)</span></p><h4 id="eigenvector-centrality">Eigenvector Centrality</h4><p><span class="math display">\[\begin{align}&amp; c_e(v_i)=\frac{1}{\lambda}\sum^{N}_{j=1}A_{i,j}\cdot c_{e}(v_j)  \\&amp; c_e = \frac{1}{\lambda}A \cdot {c_e}\end{align}\]</span></p><p><em>where <span class="math inline">\(c_e \in \mathbb{R}^{N}\)</span> is a vector containing the centrality scores of all nodes in the graph.</em></p><blockquote><p><strong>Citation</strong>: A real squared matrix with positive elements has a unique largest eigenvalue and its corresponding eigenvector has all positive elements.</p></blockquote><p>​ We choose <span class="math inline">\(\lambda\)</span> as the largest eigenvalue and its corresponding eigenvector as the centrality score vector.</p><h4 id="katz-centrality">Katz Centrality</h4><h4 id="between-centrality">Between Centrality</h4><h2 id="spectral-gprah-theory">2.4 Spectral Gprah Theory</h2><h3 id="laplacian-matrix">Laplacian Matrix</h3><p><span class="math display">\[\begin{align}&amp;(Laplacian \space Matrix) \\&amp;L=D-A \\&amp;(Normalized \space Laplacian \space Matrix)\\&amp;L=D^{-1/2}(D-A)D^{-1/2}=I-D^{-1/2}AD^{-1/2}\end{align}\]</span></p><p><em>where D is a diagonal degree matrix <span class="math inline">\(D=diag(d(v_i),...,d(v_{|\mathcal{V}|}))\)</span></em></p><p>​ Laplacian Matrix is a positive semi-definite.</p><h3 id="the-eigenvalues-and-eigenvectors-of-the-laplacian-matrix">The Eigenvalues and Eigenvectors of the Laplacian Matrix</h3><p><strong>Theorem</strong>: The eigenvalues of graph's Laplacian matrix L are nonnegtive.</p><p><strong>Theorem</strong>: Given a graph <span class="math inline">\(\mathcal{G}\)</span>, the number of 0 eigenvalues of its Laplacian Matrix L equals the number of connected component in the graph.</p><p>​ For a graph with N nodes, there are N eigenvalues.</p><blockquote><p><strong>Citation</strong>: 一个n阶矩阵一定有n个特征值（包括重根，也可能是复根）一个n阶实对称矩阵一定有n个实特征值（包括重根）每个特征值至少有一个特诊向量，不同特征值对应的特征向量线性无关。</p></blockquote><h2 id="graph-signal-processing">2.5 Graph Signal Processing</h2><p>​ A graph signal consists of a graph and a mapping function <span class="math inline">\(f\)</span> defined on node domain, which maps the nodes to real values: <span class="math display">\[f: \mathcal V \rightarrow \mathbb R^d,\]</span> where d is the dimension of the vector associated with each node. <strong>Denote mapped values for all nodes as f with f[i] corresponding to node <span class="math inline">\(v_i\)</span>.</strong></p><p>​ A graph is smooth if the values in connected nodes are similar. A smooth graph signal is low frequency, because the values change slowly across the graph via the edges.</p><p>​ The value <span class="math inline">\(\mathbf{f^{T}Lf}\)</span> is called the smoothness(or frequency) of the signal <strong>f</strong>. <span class="math display">\[\mathbf{f^{T}Lf}=\frac{1}{2}\sum_{v_i\in\mathcal{V}}\sum_{v_j\in\mathcal{N}(v_i)}(\mathbf f[i]-\mathbf f[j])^2\]</span> ​ The Laplacian quadratic form can measure the smoothness(or the frequency) of a graph signal because it's the summation of the square of the difference between all pairs of connected nodes. When the signal is smooth, the smoothness is small.</p><p>​ Similar to classical signal can be denoted in time domain and frequency domain, graph signal can also be representation in spatial domain, and spectral domain(or frequency domain).</p><h3 id="graph-fourier-transform">Graph Fourier Transform</h3><h1 id="graph-neural-network">Graph Neural Network</h1><h2 id="introduction-1">5.1 Introduction</h2><h2 id="the-graph-gnn-framework">5.2 The Graph GNN Framework</h2><h2 id="graph-filters">5.3 Graph Filters</h2><h3 id="spectral-based-graph-filters">5.3.1 Spectral-Based Graph Filters</h3><h4 id="graph-spectral-filter">Graph Spectral Filter</h4><p><img src="https://s2.loli.net/2023/04/09/7xAfXQGOisU9DCZ.png" /></p><h4 id="spectral-based-graph-filter">Spectral-Based Graph Filter</h4><p>Highlights of Poly-Filter:</p><ol type="1"><li>The Poly-Filter is spatially localized. Because it only involves K-hops when calculating output for a specific node;</li><li>Eigendecomposition isn't needed;</li></ol><p>Disadvantage of Poly-Filter:</p><ol type="1"><li><p>The bias of the polymial (i.e., 1, x, x^2, ...) is not an orthogonal bias. Hence the coeffient of the biases are dependent on each other. An update in one coeffient may lead to changes in other coeffients.</p><blockquote><p>正交多项式，指一族多项式中任意两个多项式在某个区间内内积积分为0；</p></blockquote></li></ol><h4 id="chebyshev-polynomial-and-cheby-filter">Chebyshev Polynomial and Cheby-Filter</h4><p>为了解决基底正交的问题，引入正交多项式中的切比雪夫多项式（同样是正交多项式的还有勒让德多项式）</p><p><img src="https://s2.loli.net/2023/04/09/CmPlfk4XJS39LrK.png" /></p><h4 id="gcn-filter-simplified-cheby-filter-involving-1-hop-neighbors">GCN-Filter: Simplified Cheby-Filter Involving 1-Hop Neighbors</h4><h4 id="graph-filter-for-multichannel-graph-signal">Graph Filter for Multichannel Graph Signal</h4><h3 id="spatial-based-graph-filters">5.3.2 Spatial-Based Graph Filters</h3><h4 id="graphsage-filter">GraphSAGE Filter</h4><h4 id="gat-filter">GAT-Filter</h4><h4 id="ec-filter">EC-Filter</h4><h4 id="ggnn-filter">GGNN-Filter</h4><h4 id="mo-filter">Mo-Filter</h4><h4 id="mpnn-a-general-framework-for-spatial-based-graph-filters">MPNN: A General Framework for Spatial-Based Graph Filters</h4><h2 id="graph-pooling">5.4 Graph Pooling</h2><h2 id="parameter-learning-for-graph-neural-network">5.5 Parameter Learning for Graph Neural Network</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> GNN </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Operating Systems Review Notes</title>
+      <link href="/2022/09/02/Operating_Systems_Review_Notes/"/>
+      <url>/2022/09/02/Operating_Systems_Review_Notes/</url>
+      
+        <content type="html"><![CDATA[<h1 id="在线预览效果">在线预览效果</h1><div class="row">    <embed src="https://xiaoweiQian11.github.io/pdf/Operating_Systems_Review_Notes.pdf" width="100%" height="550" type="application/pdf"></div><h1 id="使用pdf.js实现在线pdf阅读">使用PDF.js实现在线PDF阅读</h1><p><a href="https://xiaoweiqian11.github.io/pdfjs/web/viewer.html?file=../data/Operating_Systems_Review_Notes.pdf">Operating_Systems_Review_Notes.pdf (xiaoweiqian11.github.io)</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PDF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 操作系统 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
